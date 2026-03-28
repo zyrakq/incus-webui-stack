@@ -1,0 +1,8 @@
+services:
+  incus-webui:
+    networks:
+      - incus-webui-workspace-network
+
+networks:
+  incus-webui-workspace-network:
+    external: true

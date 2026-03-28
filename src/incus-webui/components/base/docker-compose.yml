@@ -1,0 +1,17 @@
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "${LOG_MAX_SIZE:-10m}"
+    max-file: "${LOG_MAX_FILE:-3}"
+    compress: "${LOG_COMPRESS:-true}"
+  
+services:
+  incus-webui:
+    container_name: incus-webui
+    image: incus-webui
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      LXD_UI_BACKEND_IP: ${LXD_UI_BACKEND_IP}
+      LXD_UI_BACKEND_SECRET: ${LXD_UI_BACKEND_SECRET}
+      LXD_UI_BACKEND_KEY_PEM: ${LXD_UI_BACKEND_KEY_PEM}
